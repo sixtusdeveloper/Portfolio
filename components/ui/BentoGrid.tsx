@@ -1,10 +1,17 @@
 // Note: This is the BentoGrid component for the project. It is a grid component that is used to display the grid items in the project. It is used in the Grid component
 // Also install this npm i --save-dev @types/react-lottie
-import React from 'react';
-import { useState } from 'react';
+'use client';
+
 import { cn } from "@/utils/cn";
 import { BackgroundGradientAnimation } from "@/components/ui/GradientBg";
 import { GlobeDemo } from "./GridGlobe";
+
+// Dependecies & packages
+import { useState } from 'react';
+import Lottie from 'react-lottie';
+import animationData from '@/data/confetti.json';
+import MagicButton from "./MagicButton";
+import { IoCopyOutline } from "react-icons/io5";
 
 
 export const BentoGrid = ({
@@ -46,6 +53,14 @@ export const BentoGridItem = ({
   titleClassName?: string;
   spareImg?: string;
 }) => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('sixtusushrey@gmail.com')
+
+    setCopied(true);
+  };
+
   return (
     <div
       className={cn(
@@ -85,7 +100,6 @@ export const BentoGridItem = ({
         </div>
         {id === 6 && (
           <BackgroundGradientAnimation>
-            <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl"></div>
           </BackgroundGradientAnimation>
         )}
 
@@ -105,32 +119,55 @@ export const BentoGridItem = ({
           >
             {title}
           </div>
-
+          {/* For displaying the Globe */}
           {id === 2 && <GlobeDemo />}
 
           {/* My tech stecks */}
           {id === 3 && (
             <div className="flex gap-1 lg:gap-5 w-fit absolute -right-3 lg:-right-2">
-              <div className="flex flex-col gap-3 lg:gap-8">
-                  {['React.js', 'Next.js', 'TypeScript', 'VueJS', 'JavaScript'].map((item) =>(
-                      <span key={item} className="py-2 lg:py-4 lg:px-3 px-3 text-xs lg:text-base opacity-50 lg:opacity-100 rounded-lg text-center bg-[#10132E]">
+              <div className="flex flex-col gap-2 lg:gap-4">
+                  {['React.js', 'Next.js', 'TypeScript'].map((item) =>(
+                      <span key={item} className="py-2 lg:py-3 lg:px-3 px-3 text-[purple] lg:text-base opacity-50 lg:opacity-100 rounded-lg text-center bg-[#10132E]">
                           {item}
                       </span>
                   ))}
-                  <span className="py-4 px-3 rounded-lg text-center bg-[#10132E]" />
+                  <span className="py-2 px-2 rounded-lg text-center bg-[#10132E]" />
               </div>
-              <div className="flex flex-col gap-3 lg:gap-8">
-                  <span className="py-4 px-3 rounded-lg text-center bg-[#10132E]" />
-                  {['MongoDB', 'NodeJS', 'Mysql', 'AWS', 'PHP'].map((item) =>(
-                      <span key={item} className="py-2 lg:py-4 lg:px-3 px-3 text-xs lg:text-base opacity-50 lg:opacity-100 rounded-lg text-center bg-[#10132E]">
+              <div className="flex flex-col gap-2 lg:gap-4">
+                  <span className="py-2 px-2 rounded-lg text-center bg-[#10132E]" />
+                  {['MongoDB', 'NodeJS', 'AWS'].map((item) =>(
+                      <span key={item} className="py-2 lg:py-3 lg:px-3 px-3 text-[lightseagreen] lg:text-base opacity-50 lg:opacity-100 rounded-lg text-center bg-[#10132E]">
                           {item}
                       </span>
                   ))}
               </div>
             </div>
           )}
+          {id === 6 && (
+            <div className='mt-5 relative'>
+              <div className={`absolute -bottom-5 right-0`}>
+                <Lottie 
+                options={{
+                  loop: copied,
+                  autoplay: copied,
+                  animationData,
+                  rendererSettings: {
+                    preserveAspectRatio: 'xMidYMid slice'
+                  }
+                }}
+                />
+              </div>
+              <MagicButton 
+              title={copied ? 'Copied!' : 'Copy Email'}
+              icon={<IoCopyOutline />}
+              position="left"
+              otherClasses="!bg-[#10132E] hover:bg-[#10132E]"
+              handleClick={handleCopyEmail}
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
-};
+}; 
