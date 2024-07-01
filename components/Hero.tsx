@@ -8,7 +8,7 @@ import { FaLocationArrow } from 'react-icons/fa';
 
 const Hero = () => {
   return (
-    <div className="pb-20 pt-36">
+    <div className="pb-20 pt-9">
       <div className="flex justify-center items-center flex-col">
         <Spotlight className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen" fill="white"/>
         <Spotlight className="top-10 left-full h-[80vh] w-[50vw]" fill="purple"/>
@@ -26,7 +26,9 @@ const Hero = () => {
           className="text-center text-[40px] md:text-5xl lg:text-6xl"
           words="Transforming Concepts into Seamless User Experiences"
           />
-          <p className='text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl'>Hi, I&apos;m Sixtus, a Software Engineer based in Lagos</p>
+          <p className='text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl'>
+            Hi, I&apos;m Sixtus, a Software Engineer based in Lagos
+          </p>
 
           <a href="#about">
             <MagicButton 
