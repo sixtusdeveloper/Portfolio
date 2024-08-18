@@ -4,7 +4,7 @@ import { InfiniteMovingCards } from './ui/InfiniteMovingCards';
 import { companies } from '@/data';
 
 import React from 'react'
-import { div } from 'three/examples/jsm/nodes/Nodes.js';
+// import { div } from 'three/examples/jsm/nodes/Nodes.js';
 
 const Clients = () => {
   return (
